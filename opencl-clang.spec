@@ -4,7 +4,7 @@
 #
 Name     : opencl-clang
 Version  : 70
-Release  : 2
+Release  : 3
 URL      : https://github.com/tripzero/opencl-clang/archive/ocl-open-70.tar.gz
 Source0  : https://github.com/tripzero/opencl-clang/archive/ocl-open-70.tar.gz
 Summary  : No detailed summary available
@@ -55,7 +55,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1551373195
+export SOURCE_DATE_EPOCH=1551898372
 mkdir -p clr-build
 pushd clr-build
 %cmake .. -DPREFERRED_LLVM_VERSION="7.0.1"
@@ -63,13 +63,16 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1551373195
+export SOURCE_DATE_EPOCH=1551898372
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/opencl-clang
 cp LICENSE %{buildroot}/usr/share/package-licenses/opencl-clang/LICENSE
 pushd clr-build
 %make_install
 popd
+## install_append content
+ln -s %{buildroot}/usr/lib64/libcommon_clang.so.7 libopencl_clang.so.7
+## install_append end
 
 %files
 %defattr(-,root,root,-)
