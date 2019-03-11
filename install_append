@@ -1,2 +1,3 @@
-ln -s libcommon_clang.so.7 %{buildroot}/usr/lib64/libopencl_clang.so.7
-ln -s libcommon_clang.so %{buildroot}/usr/lib64/libopencl_clang.so
+# igc wants this to be called opencl_clang
+#ln -s libcommon_clang.so.7 %{buildroot}/usr/lib64/libopencl_clang.so.7
+#ln -s libcommon_clang.so %{buildroot}/usr/lib64/libopencl_clang.so

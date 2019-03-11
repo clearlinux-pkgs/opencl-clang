@@ -1,2 +1,2 @@
-libcommon_clang.so.7:CheckCompileOptions
-libcommon_clang.so.7:Compile
+libopencl_clang.so.7:CheckCompileOptions
+libopencl_clang.so.7:Compile
