@@ -4,7 +4,7 @@
 #
 Name     : opencl-clang
 Version  : 70
-Release  : 6
+Release  : 7
 URL      : https://github.com/tripzero/opencl-clang/archive/ocl-open-70.tar.gz
 Source0  : https://github.com/tripzero/opencl-clang/archive/ocl-open-70.tar.gz
 Summary  : No detailed summary available
@@ -17,6 +17,7 @@ BuildRequires : git
 BuildRequires : llvm
 BuildRequires : llvm-dev
 Patch1: 0001-add-Wl-and-no-undefined.patch
+Patch2: 0001-set-project-name-to-opencl_clang.patch
 
 %description
 [![Build Status](https://travis-ci.com/intel/opencl-clang.svg?branch=ocl-open-70)](https://travis-ci.com/intel/opencl-clang)
@@ -51,13 +52,14 @@ license components for the opencl-clang package.
 %prep
 %setup -q -n opencl-clang-ocl-open-70
 %patch1 -p1
+%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1552323360
+export SOURCE_DATE_EPOCH=1552424179
 mkdir -p clr-build
 pushd clr-build
 export LDFLAGS="${LDFLAGS} -fno-lto"
@@ -66,7 +68,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1552323360
+export SOURCE_DATE_EPOCH=1552424179
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/opencl-clang
 cp LICENSE %{buildroot}/usr/share/package-licenses/opencl-clang/LICENSE
