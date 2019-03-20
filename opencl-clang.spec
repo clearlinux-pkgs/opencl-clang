@@ -4,7 +4,7 @@
 #
 Name     : opencl-clang
 Version  : 70
-Release  : 8
+Release  : 9
 URL      : https://github.com/tripzero/opencl-clang/archive/ocl-open-70.tar.gz
 Source0  : https://github.com/tripzero/opencl-clang/archive/ocl-open-70.tar.gz
 Summary  : No detailed summary available
@@ -14,9 +14,7 @@ Requires: opencl-clang-lib = %{version}-%{release}
 Requires: opencl-clang-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : git
-BuildRequires : llvm
 BuildRequires : llvm-dev
-BuildRequires : nano
 Patch1: 0001-build-use-llvm_config-and-full-symbols-resolution.patch
 
 %description
@@ -58,7 +56,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1553064574
+export SOURCE_DATE_EPOCH=1553064831
 mkdir -p clr-build
 pushd clr-build
 export LDFLAGS="${LDFLAGS} -fno-lto"
@@ -70,7 +68,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1553064574
+export SOURCE_DATE_EPOCH=1553064831
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/opencl-clang
 cp LICENSE %{buildroot}/usr/share/package-licenses/opencl-clang/LICENSE
