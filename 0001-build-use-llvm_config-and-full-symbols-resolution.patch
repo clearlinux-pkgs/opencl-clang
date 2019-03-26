@@ -1,4 +1,4 @@
-From 5d79560b9fc2920126b8301e9f1bf4085d5fab47 Mon Sep 17 00:00:00 2001
+From ad5eba2a2120c253434d03882f8b733dcb4dff34 Mon Sep 17 00:00:00 2001
 From: Dmitry Rogozhkin <dmitry.v.rogozhkin@intel.com>
 Date: Thu, 7 Mar 2019 09:56:05 -0800
 Subject: [PATCH] build: use llvm_config and full symbols resolution
@@ -15,14 +15,14 @@ refactors how llvm libraries are fetched: we now use llvm_config().
 
 Signed-off-by: Dmitry Rogozhkin <dmitry.v.rogozhkin@intel.com>
 ---
- CMakeLists.txt | 41 +++++------------------------------------
- 1 file changed, 5 insertions(+), 36 deletions(-)
+ CMakeLists.txt | 47 +++++------------------------------------------
+ 1 file changed, 5 insertions(+), 42 deletions(-)
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 0162ba7..fd1cca1 100644
+index 0162ba7..75bfb68 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -175,42 +175,6 @@ link_directories(
+@@ -175,54 +175,14 @@ link_directories(
      ${LLVM_LIBRARY_DIRS}
  )
  
@@ -65,16 +65,29 @@ index 0162ba7..fd1cca1 100644
  set(ADDITIONAL_LIBS )
  
  if(USE_PREBUILT_LLVM AND NOT LLVMSPIRV_INCLUDED_IN_LLVM)
-@@ -271,6 +235,8 @@ add_llvm_library(${TARGET_NAME} SHARED
-     ${ADDITIONAL_LIBS}
-     ${CMAKE_DL_LIBS})
+   # SPIRV-LLVM-Translator is not included into LLVM as a component.
+   # So, we need to list it there explicitly as a library
+   set(ADDITIONAL_LIBS ${ADDITIONAL_LIBS} LLVMSPIRVLib)
+-elseif(NOT LLVM_LINK_LLVM_DYLIB)
+-  # SPIRV-LLVM-Translator is included into LLVM as a component, but
+-  # LLVM components is not linked together into an umbrella library.
+-  # So, we need to list SPIRV-LLVM-Translator there explicitly as a component
++endif(USE_PREBUILT_LLVM)
+   set(LLVM_LIBS ${LLVM_LIBS} SPIRVLib)
+-endif(USE_PREBUILT_LLVM AND NOT LLVMSPIRV_INCLUDED_IN_LLVM)
  
-+llvm_config(${TARGET_NAME} USE_SHARED all)
-+
- # Configure resource file on Windows
- if (WIN32)
-     # windows_resource_file should be defined by llvm_add_library and should
-@@ -303,6 +269,9 @@ if (WIN32)
+ add_subdirectory(cl_headers)
+ 
+@@ -235,7 +195,7 @@ add_llvm_library(${TARGET_NAME} SHARED
+ 
+   DEPENDS CClangCompileOptions
+   LINK_COMPONENTS
+-    ${LLVM_LIBS}
++    all
+   LINK_LIBS
+ # The list of clang libraries is taken from clang makefile
+ # (build/tools/clang/tools/driver/CMakeFiles/clang.dir/link.txt)
+@@ -303,6 +263,9 @@ if (WIN32)
              "RC_PRODUCT_NAME=\"${RC_PRODUCT_NAME}\""
              "RC_PRODUCT_VERSION=\"${RC_FILE_VERSION}\""
              "RC_COPYRIGHT=\"Copyright ${RC_CHAR_C} 2018 Intel Corporation. All rights reserved.\"")
