@@ -1,1 +1,1 @@
-0001-build-use-llvm_config-and-full-symbols-resolution.patch
+0001-dlopen-soname-instead-of-linker-name.patch

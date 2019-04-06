@@ -1,8 +1,9 @@
-libLLVM-7.so
+libLLVM.so.8
 libc.so.6
-libclangBasic.so.7
-libclangFrontend.so.7
-libclangFrontendTool.so.7
+libclangBasic.so.8
+libclangFrontend.so.8
+libclangFrontendTool.so.8
+libclangSerialization.so.8
 libdl.so.2
 libgcc_s.so.1
 libstdc++.so.6
