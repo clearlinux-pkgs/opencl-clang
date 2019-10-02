@@ -1,5 +1,5 @@
 PKG_NAME := opencl-clang
-URL = https://github.com/intel/opencl-clang/archive/v8.0.0-1/opencl-clang-8.0.0.1.tar.gz
+URL = https://github.com/intel/opencl-clang/archive/v9.0.0/opencl-clang-9.0.0.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
