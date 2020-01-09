@@ -4,7 +4,7 @@
 #
 Name     : opencl-clang
 Version  : 9.0.0
-Release  : 12
+Release  : 13
 URL      : https://github.com/intel/opencl-clang/archive/v9.0.0/opencl-clang-9.0.0.tar.gz
 Source0  : https://github.com/intel/opencl-clang/archive/v9.0.0/opencl-clang-9.0.0.tar.gz
 Summary  : No detailed summary available
