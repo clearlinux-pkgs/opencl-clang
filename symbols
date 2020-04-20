@@ -1,2 +1,2 @@
-libopencl-clang.so.9:CheckCompileOptions
-libopencl-clang.so.9:Compile
+libopencl-clang.so.10:CheckCompileOptions
+libopencl-clang.so.10:Compile
