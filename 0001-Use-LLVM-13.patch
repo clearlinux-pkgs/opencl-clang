@@ -1,25 +1,25 @@
-From adaf0bfdf0ed0add2bfd068eb0da7fc1c3e7ff20 Mon Sep 17 00:00:00 2001
-From: Thiago Macieira <thiago.macieira@intel.com>
-Date: Tue, 20 Apr 2021 11:00:38 -0700
-Subject: [PATCH] Allow compiling with LLVM 11.1
+From 1f859541de2f79e70f8ae13b6e05e29353a97a90 Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Thu, 3 Feb 2022 17:12:49 +0000
+Subject: [PATCH] Use LLVM 13
 
 ---
  CMakeLists.txt | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index a324add..732e7b5 100644
+index ebbe4c7..ed40e56 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -20,7 +20,7 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
      add_definitions(-DUSE_PREBUILT_LLVM)
  
      if(NOT PREFERRED_LLVM_VERSION)
--        set(PREFERRED_LLVM_VERSION "11.0.0")
-+        set(PREFERRED_LLVM_VERSION "11.1.0")
+-        set(PREFERRED_LLVM_VERSION "12.0.0")
++        set(PREFERRED_LLVM_VERSION "13.0.0")
      endif(NOT PREFERRED_LLVM_VERSION)
      message(STATUS "[OPENCL-CLANG] Looking for LLVM version ${PREFERRED_LLVM_VERSION}")
      find_package(LLVM ${PREFERRED_LLVM_VERSION} REQUIRED)
 -- 
-2.31.1
+2.33.0
 
